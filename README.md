@@ -1,0 +1,2 @@
+# ngbot
+New generation bot
