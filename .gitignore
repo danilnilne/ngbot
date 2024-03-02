@@ -1,5 +1,5 @@
+.gitignore
 *.log
 *.yml
 *.yaml
 *.json
-
