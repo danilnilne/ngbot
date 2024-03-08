@@ -80,10 +80,10 @@ def parse_updates(updates):
     sticker:    ['message_id', 'from', 'chat', 'date', 'sticker']
     """
     if len(updates) == 0:
-        print("LOG_DEBUG: No updates to be parsed")
+        print("DEBUG: No updates to be parsed")
         return
 
-    print(f"LOG_INFO: We have updates {len(updates)} to be parsed")
+    print(f"INFO: updates {len(updates)} to be parsed")
 
     for update in updates:
         if "text" in update["message"].keys():
@@ -94,16 +94,9 @@ def parse_updates(updates):
                 except Exception as commands_exec_error:
                     raise Exception(commands_exec_error)
             else:
-                tg_reply_message(
-                    update, (f"Just a text: {update['message']['text']}"))
+                tg_reply_message(update, "Just a text")
         else:
             tg_reply_message(update, "Cannot recognise a message type")
-        """
-        keys = []
-        for key in update["message"].keys():
-            keys.append(key)
-        print(f"LOG_DEBUG: Next keys are in UPDATE {keys}")
-        """
 
 
 def tg_reply_message(update, reply_data="Empty"):
@@ -152,7 +145,7 @@ def tg_send_message(**kwargs):
     tg_send_message(**settings)
     """
     if ("chat_id" not in kwargs.keys()) and ("text" not in kwargs.keys()):
-        raise ScriptExeption("KeyError: Key chat_id and text must be provided")
+        raise ScriptExeption("KeyError: chat_id and text must be provided")
 
     url = (f"{config.api_url}{config.token}/sendMessage")
     headers = {"application": "json"}
@@ -172,11 +165,11 @@ if __name__ == "__main__":
             try:
                 config = Config('config.yml')
             except Exception as init_config_error:
-                print(f"LOG_ERROR: {init_config_error}")
+                print(f"ERROR: {init_config_error}")
         else:
             try:
                 tg_get_updates()
             except Exception as work_line_error:
-                print(f"LOG_ERROR: {work_line_error}")
+                print(f"ERROR: {work_line_error}")
 
         time.sleep(3)
