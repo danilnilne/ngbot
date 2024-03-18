@@ -7,4 +7,4 @@ COPY . .
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
 
-ENTRYPOINT ["python3", "start.py"]
+CMD ["python3", "start.py"]
