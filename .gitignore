@@ -3,3 +3,4 @@
 *.yml
 *.yaml
 *.json
+*__pycache__*
