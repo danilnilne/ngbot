@@ -3,6 +3,21 @@ import time
 import os
 import requests
 from commands import Commands
+import logging
+
+# create logger
+logger = logging.getLogger(__file__)
+logger.setLevel(logging.DEBUG)
+# create console handler and set level to debug
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.DEBUG)
+# create formatter
+formatter = logging.Formatter(
+    '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+# add formatter to ch
+console_handler.setFormatter(formatter)
+# add ch to logger
+logger.addHandler(console_handler)
 
 
 class ScriptExeption(Exception):
@@ -80,10 +95,10 @@ def parse_updates(updates):
     sticker:    ['message_id', 'from', 'chat', 'date', 'sticker']
     """
     if len(updates) == 0:
-        print("DEBUG: No updates to be parsed")
+        logger.info('No updates to be parsed')
         return
 
-    print(f"INFO: updates {len(updates)} to be parsed")
+    logger.info('%d updates to be parsed', len(updates))
 
     for update in updates:
         if "text" in update["message"].keys():
@@ -165,11 +180,12 @@ if __name__ == "__main__":
             try:
                 config = Config('config.yml')
             except Exception as init_config_error:
-                print(f"ERROR: {init_config_error}")
+                logger.critical('Unable to init config due to: %s',
+                                init_config_error)
         else:
             try:
                 tg_get_updates()
             except Exception as work_line_error:
-                print(f"ERROR: {work_line_error}")
-
+                logger.critical('Unable to get Updates due to: %s',
+                                work_line_error)
         time.sleep(3)

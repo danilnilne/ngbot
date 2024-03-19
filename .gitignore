@@ -1,6 +1,5 @@
 .gitignore
 *.log
 *config.yml*
-*.yaml
 *.json
 *__pycache__*
