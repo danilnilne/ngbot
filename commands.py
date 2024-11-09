@@ -38,7 +38,7 @@ class Commands():
         self.status = "Finished"
 
 
-def exec_command(*args, timeout=None):
+def exec_command(*args, timeout=120):
     """ Execute command and return returncode, stdout, stderr """
 
     try:

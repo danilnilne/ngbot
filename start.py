@@ -5,18 +5,22 @@ import requests
 from commands import Commands
 import logging
 
-# create logger
+# Create logger
 logger = logging.getLogger(__file__)
 logger.setLevel(logging.DEBUG)
-# create console handler and set level to debug
+
+# Create console handler and set level to debug
 console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.DEBUG)
-# create formatter
+
+# Create formatter
 formatter = logging.Formatter(
     '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-# add formatter to ch
+
+# Add formatter to ch
 console_handler.setFormatter(formatter)
-# add ch to logger
+
+# Add ch to logger
 logger.addHandler(console_handler)
 
 
