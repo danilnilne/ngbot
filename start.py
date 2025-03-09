@@ -93,7 +93,7 @@ def parse_updates(updates):
 
     Parse each update from the list with updates
 
-    Field lists examples in Update:
+    Field list examples in Update:
     text:       ['message_id', 'from', 'chat', 'date', 'text']
     command:    ['message_id', 'from', 'chat', 'date', 'text', 'entities']
     sticker:    ['message_id', 'from', 'chat', 'date', 'sticker']
