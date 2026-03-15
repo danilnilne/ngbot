@@ -15,6 +15,9 @@ class Commands():
         elif self.command == "speedtest":
             self.speedtest()
 
+        elif self.command == "ping":
+            self.ping()
+
         elif self.command == "two":
             self.two()
 
@@ -23,6 +26,10 @@ class Commands():
 
     def admin(self):
         self.data = "Admin results"
+        self.status = "Finished"
+
+    def ping(self):
+        self.data = exec_command(self.command)
         self.status = "Finished"
 
     def speedtest(self):
