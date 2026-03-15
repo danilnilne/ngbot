@@ -22,11 +22,11 @@ class Commands():
             self.unknown()
 
     def admin(self):
-        self.data = "Admined"
+        self.data = "Admin results"
         self.status = "Finished"
 
     def speedtest(self):
-        self.data = "Oned"
+        self.data = "Speedtest results"
         self.status = "Finished"
 
     def two(self):
