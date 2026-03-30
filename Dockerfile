@@ -1,12 +1,21 @@
-FROM python:3
+FROM python:3.11-slim
 
-WORKDIR /app
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
 
-COPY requirements.txt .
+RUN useradd --create-home ngbot
+WORKDIR /home/ngbot
+
+# 4. Сначала копируем зависимости (кэширование слоев)
+COPY --chown=ngbot:ngbot requirements.txt .
 
 RUN pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt
+    && pip install --no-cache-dir --user -r requirements.txt
 
-COPY . .
+COPY --chown=ngbot:ngbot . .
 
-CMD ["python3", "start.py"]
+USER ngbot
+
+ENV PATH="/home/ngbot/.local/bin:${PATH}"
+
+CMD ["python", "start.py"]
