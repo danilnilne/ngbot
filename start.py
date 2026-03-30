@@ -294,7 +294,7 @@ if __name__ == "__main__":
             updates.sync_updates_from_api()
             logger.info('%s: === all update(s) handled. Waiting for %s sec... ===',
                         __name__, config.api_heartbeat)
-            time.sleep(config.api_heartbeat)
+            time.sleep(float(config.api_heartbeat))
     except KeyboardInterrupt:
         logger.critical('%s: Programm is terminating', __name__)
     finally:
