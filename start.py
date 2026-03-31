@@ -15,12 +15,9 @@ logger.setLevel(logging.DEBUG)
 
 # Create console handler and set level to debug
 console_handler = logging.StreamHandler(sys.stderr)
-console_handler.setLevel(logging.DEBUG)
+console_handler.setLevel(logging.INFO)
 
 # Create formatter
-# formatter = logging.Formatter(
-#     '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-
 formatter = logging.Formatter(
     '%(asctime)s | %(levelname)s | %(message)s')
 
@@ -98,7 +95,7 @@ class Updates:
             else:
                 logger.info('%s: duplicates for [%s]',
                             __name__, entry["update_id"])
-        logger.debug('%s: updates exist: %d, comes: %d',
+        logger.info('%s: updates exist: %d, comes: %d',
                      __name__, old_update, new_updates)
 
 
@@ -242,11 +239,11 @@ def init_worker(global_config):
     signal.signal(signal.SIGINT, signal.SIG_IGN)
     global config
     config = global_config
-    logger.debug('%s: config: %s', __name__, config)
+    logger.info('%s: config: %s', __name__, config)
 
 
 def pool_notifier(update):
-    logger.debug('%s: update [%s] to resolve', __name__, update["update_id"])
+    logger.info('%s: update [%s] to resolve', __name__, update["update_id"])
     tg_resolve_update(update)
     updates.delete_entry(update["update_id"])
 
